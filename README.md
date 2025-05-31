@@ -18,11 +18,10 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 <h2>List of Prerequisites</h2>
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+- Set up a Resource Group and a Virtual Machine (VM) in Azure.
+- Install the osTicket requirements.
+- Install osTicket itself.
+
 
 <h2>Installation Steps</h2>
 
@@ -30,22 +29,73 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 <img src="https://i.imgur.com/yogBGNS.png" height="80%" width="80%"/> 
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+
+## Step 1: VM Setup & Prerequisites
+
+1. **Create VM in Azure**
+   - Name: `osticket-vm`
+   - OS: Windows 10, 4 vCPUs
+   - Username: `labuser`
+   - Password: `osTicketPassword1!`
+
+2. **Connect via RDP** and extract `osTicket-Installation-Files.zip` to Desktop.
+
+3. **Install Dependencies**
+   - Enable **IIS with CGI**:  
+     `Control Panel → Programs → Turn Windows features on/off → IIS → Application Development → [x] CGI`
+   - Install from `osTicket-Installation-Files`:
+     - `PHPManagerForIIS_V1.5.0.msi`
+     - `rewrite_amd64_en-US.msi`
+     - `VC_redist.x86.exe`
+     - `mysql-5.5.62-win32.msi` (MySQL root/root)
+   - Unzip `php-7.3.8-nts-Win32-VC15-x86.zip` to `C:\PHP`
+   - Register PHP in IIS:  
+     PHP Manager → Register: `C:\PHP\php-cgi.exe`
+   - Restart IIS (Stop/Start)
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/LddZPLP.png" height="80%" width="80%"/> 
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+
+## Step 2: osTicket File Setup
+
+1. Unzip `osTicket-v1.15.8.zip` → Copy `upload` to:  
+   `C:\inetpub\wwwroot\osTicket`
+
+2. In IIS:
+   - Enable PHP extensions:
+     - `php_imap.dll`
+     - `php_intl.dll`
+     - `php_opcache.dll`
+
+3. Configure:
+   - Rename `ost-sampleconfig.php` → `ost-config.php`  
+     (Located in `osTicket\include`)
+   - Set permissions on `ost-config.php`:
+     - Disable inheritance
+     - Remove all
+     - Add `Everyone: Full Control`
 
 <p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/bxkZkbl.png" height="80%" width="80%"/> 
 </p>
 <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
+
+## Step 3: Final Setup & Cleanup
+
+1. **Database**:
+   - Install **HeidiSQL**
+   - Create DB: `osTicket`
+   - Login: `root` / `root`
+
+2. **Browser Setup**:
+   - Navigate: `http://localhost/osTicket`
+   - Complete install:
+     - Helpdesk Name
+     - Admin Email
+     - MySQL: `osTicket` / root / root
+
+3. **Post-Install**:
+   - Delete: `C:\inetpub\wwwroot\osTicket\setup`
+   - Set `ost-config.php` to **Read-only**
