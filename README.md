@@ -1,5 +1,7 @@
 # osticket-prereq
 
+<img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
+
 # osTicket Installation on Azure Windows 10 VM
 
 This guide documents the setup of osTicket v1.15.8 on a Windows 10 VM in Azure using IIS, PHP, and MySQL.
@@ -90,5 +92,4 @@ This guide documents the setup of osTicket v1.15.8 on a Windows 10 VM in Azure u
    - Delete: `C:\inetpub\wwwroot\osTicket\setup`
    - Set `ost-config.php` to **Read-only**
 
- (images/Step5.png)
-
+<img width="763" alt="image" src="[https://github.com/user-attachments/assets/d6097b14-f8bd-4758-8535-935fb4385eb0](https://imgur.com/a/yo3sx7x)" /> 
