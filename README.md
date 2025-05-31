@@ -90,5 +90,5 @@ This guide documents the setup of osTicket v1.15.8 on a Windows 10 VM in Azure u
    - Delete: `C:\inetpub\wwwroot\osTicket\setup`
    - Set `ost-config.php` to **Read-only**
 
- ![Screenshot Description](images/Step5.png)
+ (images/Step5.png)
 
