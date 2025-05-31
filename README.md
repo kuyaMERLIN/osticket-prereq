@@ -90,9 +90,4 @@ This guide documents the setup of osTicket v1.15.8 on a Windows 10 VM in Azure u
    - Delete: `C:\inetpub\wwwroot\osTicket\setup`
    - Set `ost-config.php` to **Read-only**
 
----
-
-## 🔗 URLs
-
-- **Admin Panel**: [http://localhost/osTicket/scp/login.php](http://localhost/osTicket/scp/login.php)  
-- **End User Portal**: [http://localhost/osTicket/](http://localhost/osTicket/)
+https://github.com/kuyaMERLIN/osticket-prereq/blob/f4cf6fdf57bb58fe6910e34e2944b88d1b547caf/Step5.gif
